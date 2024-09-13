@@ -3,83 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Portfolio</title>
+    <title>Zac Douglas</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
         }
         header {
-            background: #333;
-            color: #fff;
-            padding: 10px 0;
+            background: #f4f4f4;
+            color: #83A491;
+            padding: 20px;
             text-align: center;
-        }
-        nav {
-            margin: 0;
-            padding: 0;
+            
         }
         nav a {
-            color: #fff;
+            color: #83A491;
             text-decoration: none;
             padding: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
         }
         section {
             padding: 20px;
             margin: 20px;
             background: #fff;
-            border-radius: 5px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        h1, h2, h3 {
-            color: #333;
+        h1 {
+            font-size: 2.5em;
+        }
+        h2 {
+            border-bottom: 2px solid #8FB5A0; /* Army green color */
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .highlight {
+            background: #8FB5A0; /* Army green color */
+            color: #fff;
+            padding: 5px;
+            border-radius: 3px;
         }
         footer {
-            background: #333;
+            background: #83A491; 
             color: #fff;
             text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
+            padding: 10px;
             width: 100%;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .card {
+            background: #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .card h3 {
+            margin-top: 0;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Your Name</h1>
+        <h1>Zac Douglas</h1>
         <nav>
             <a href="#education">Education</a>
             <a href="#experience">Experience</a>
+            <a href="#projects">Current Projects</a>
             <a href="#career">Career Aspirations</a>
             <a href="#goals">Future Goals</a>
+            <a href="#outside">In my free time...</a>
         </nav>
     </header>
     
-    <section id="education">
-        <h2>Education</h2>
-        <p>Provide details about your university education, including your degree, major, and any notable achievements or projects.</p>
-    </section>
-    
-    <section id="experience">
-        <h2>Experience</h2>
-        <p>Outline your work experience, internships, and any relevant projects or roles you’ve undertaken. Include key responsibilities and accomplishments.</p>
-    </section>
-    
-    <section id="career">
-        <h2>Career Aspirations</h2>
-        <p>Discuss your career goals and what you are aiming to achieve in your professional life.</p>
-    </section>
-    
-    <section id="goals">
-        <h2>Future Goals</h2>
-        <p>Describe what you are currently working towards and any future projects or ambitions you have.</p>
-    </section>
+    <div class="container">
+        <section id="education">
+            <h2>Education</h2>
+            <div class="card">
+                <h3>The Australian National University (2021 - 2024)</h3>
+                <p><span class="highlight">Degree:</span> Bachelor of Commerce</p>
+                <p><span class="highlight">Majors:</span> Finance, Economics</p>
+                <p><span class="highlight">GPA:</span> 6.077</p>
+                <p><span class="highlight">WAM:</span> 75</p>
+                <p><span class="highlight">Coursework:</span> Finance, Economics, Mathematics, Econometrics, Statistics, Game Theory</p>
+                <p>Details about your coursework, achievements, and any special projects.</p>
+            </div>
+            <div class="card">
+                <h3>Shore, Sydney Church of England Grammar School (2015 - 2020)</h3>
+                <p><span class="highlight">Degree:</span> Your Degree</p>
+                <p><span class="highlight">Major:</span> Your Major</p>
+                <p>Details about your coursework, achievements, and any special projects.</p>
+            </div>
+        </section>
+        
+        <section id="experience">
+            <h2>Experience</h2>
+            <div class="card">
+                <h3>Job Title at Company</h3>
+                <p><span class="highlight">Duration:</span> Month Year - Month Year</p>
+                <p>Responsibilities, achievements, and key projects you worked on.</p>
+            </div>
+            <!-- Add more cards for other experiences -->
+        </section>
+        
+        <section id="projects">
+            <h2>Current Projects</h2>
+            <div class="card">
+                <h3>Project Title</h3>
+                <p><span class="highlight">Description:</span> Brief description of your current project, including key features and your role.</p>
+                <p><span class="highlight">Status:</span> Current status or progress updates.</p>
+            </div>
+            <!-- Add more cards for other projects -->
+        </section>
+        
+        <section id="career">
+            <h2>Career Aspirations</h2>
+            <p>Describe what you hope to achieve in your career and the steps you're taking to get there.</p>
+        </section>
+        
+        <section id="goals">
+            <h2>Future Goals</h2>
+            <p>Outline your current projects and future aspirations. Include any personal or professional goals.</p>
+        </section>
+        
+        <section id="outside">
+            <h2>In my free time...</h2>
+            <p>Share your hobbies, volunteer work, or any other activities that you’re passionate about outside of your professional life.</p>
+        </section>
+    </div>
     
     <footer>
-        <p>&copy; 2024 Your Name</p>
+        <p>&copy; 2024 Zac Douglas</p>
     </footer>
 </body>
 </html>
