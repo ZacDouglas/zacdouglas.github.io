@@ -6,138 +6,220 @@
     <title>Zac Douglas</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600&display=swap" rel="stylesheet">
     <style>
-    /* Existing CSS */
-    html {
-        scroll-behavior: smooth;
-    }
-    body {
-        font-family: 'Nunito', sans-serif;
-        margin: 0;
-        padding: 0;
-        background: #f4f4f4;
-        color: #333;
-        line-height: 1.6;
-    }
-    header {
-        background: #f4f4f4;
-        color: #83A491;
-        padding: 20px;
-        text-align: center;
-    }
-    nav a {
-        color: #83A491;
-        text-decoration: none;
-        padding: 0 15px;
-        font-weight: bold;
-    }
-    nav a:hover {
-        text-decoration: underline;
-    }
-    section {
-        padding: 20px;
-        margin: 20px;
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    h1 {
-        font-size: 2.5em;
-    }
-    h2 {
-        border-bottom: 2px solid #8FB5A0; /* Army green color */
-        padding-bottom: 10px;
-        margin-bottom: 20px;
-    }
-    .highlight {
-        background: #8FB5A0; /* Army green color */
-        color: #fff;
-        padding: 5px;
-        border-radius: 3px;
-    }
-    footer {
-        background: #83A491; 
-        color: #fff;
-        text-align: center;
-        padding: 10px;
-        width: 100%;
-    }
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 40px 20px;
-    }
-    /* Cards with hover effect */
-    .card {
-        background: #f9f9f9;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-    .card h3 {
-        margin-top: 0;
-    }
-    .animation-container {
-        text-align: center;
-        padding: 20px;
-    }
-    .animation-container img {
-        width: 200px;
-        height: auto;
-        margin: 1px;
-    }
-    /* Responsive layout */
-    @media (min-width: 768px) {
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background: #f4f4f4;
+            color: #83A491;
+            padding: 20px;
+            text-align: center;
+        }
+        nav a {
+            color: #83A491;
+            text-decoration: none;
+            padding: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            padding: 20px;
+            margin: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.5em;
+        }
+        h2 {
+            border-bottom: 2px solid #8FB5A0;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .highlight {
+            background: #8FB5A0;
+            color: #fff;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        footer {
+            background: #83A491;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+        }
         .container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
-        .container > section {
-            flex: 1 1 calc(50% - 40px);
+        .card {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-    }
-    
-    /* New CSS for expanding cards */
-    .expand-btn {
-        background-color: #83A491;
-        color: white;
-        border: none;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 10px;
-        display: block;
-    }
-
-    .expand-btn:hover {
-        background-color: #6b8c73;
-    }
-
-    .job-description {
-        margin-top: 10px;
-    }
-</style>
-
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .card h3 {
+            margin-top: 0;
+        }
+        .animation-container {
+            text-align: center;
+            padding: 20px;
+        }
+        .animation-container img {
+            width: 200px;
+            height: auto;
+            margin: 1px;
+        }
+        @media (min-width: 768px) {
+            .container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            .container > section {
+                flex: 1 1 calc(50% - 40px);
+            }
+        }
+        .expand-btn {
+            background-color: #83A491;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            display: block;
+        }
+        .expand-btn:hover {
+            background-color: #6b8c73;
+        }
+        .job-description {
+            margin-top: 10px;
+        }
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px 0;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: #83A491;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 10px 40px;
+            box-sizing: border-box;
+        }
+        .timeline-item.left { left: 0; text-align: right; }
+        .timeline-item.right { left: 50%; text-align: left; }
+        .timeline-content {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: #83A491;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .timeline-item.left::before {
+            right: -10px;
+        }
+        .timeline-item.right::before {
+            left: -10px;
+        }
+        @media (max-width: 768px) {
+            .timeline::after { left: 20px; }
+            .timeline-item { width: 100%; padding-left: 50px; padding-right: 0; }
+            .timeline-item.left, .timeline-item.right { left: 0; text-align: left; }
+            .timeline-item.left::before, .timeline-item.right::before { left: 10px; }
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1>Zac Douglas</h1>
         <nav>
+            <a href="#timeline">Overview</a>
             <a href="#education">Education</a>
             <a href="#experience">Experience</a>
-            <a href="#projects">Current Projects</a>
+            <a href="#projects">Current Goals</a>
             <a href="#career">Career Aspirations</a>
-            <a href="#goals">Future Goals</a>
+            <a href="#goals">Long Term Goals</a>
             <a href="#outside">In my free time...</a>
         </nav>
     </header>
-    
+
     <div class="container">
+        <section id="timeline">
+            <h2>Timeline Overview</h2>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>2020 - Graduated Highschool</h3>
+                        <p>Begun the year with COVID, ended with a Higher School Certificate!</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>2021 - Commenced University</h3>
+                        <p>Enrolled in Engineering and Commerce.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>2023 - The first offer!</h3>
+                        <p>Commenced my first corporate job at RSM Australia Partners.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>2024 - Graduated University</h3>
+                        <p>Graduated with a Bachelor of Commerce program at ANU, majoring in Finance & Economics.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>2025 - It begins!</h3>
+                        <p>Successfully joined the tech industry at WiseTech's HQ in the Finance Department.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="education">
             <h2>Education</h2>
             <div class="card">
@@ -147,11 +229,7 @@
                 <p><span class="highlight">GPA:</span> 6.077</p>
                 <p><span class="highlight">WAM:</span> 75</p>
                 <p><span class="highlight">Coursework:</span> Finance, Economics, Mathematics, Econometrics, Statistics, Game Theory</p>
-                <p><b>Special Industry Project:</b>
-                        Worked on a group project with Aspen Medical through the ANU College of Business and Economics.
-
-                    Proposed predictive analytics solution to client for treatment of Chronic Disease. Developed a professional client relationship with corporate executives. Carried out the role of a financial consultant; project valuations, cost minimisations, valuing non-market benefits.
-                </p>
+                <p><b>Special Industry Project:</b> Worked on a group project with Aspen Medical through the ANU College of Business and Economics. Proposed predictive analytics solution to client for treatment of Chronic Disease.</p>
             </div>
             <div class="card">
                 <h3>Shore, Sydney Church of England Grammar School (2015 - 2020)</h3>
@@ -159,89 +237,94 @@
                 <p><span class="highlight">Coursework:</span> Extension Mathematics, Advanced Mathematics, Economics, Chemistry, Business Studies, Standard English.</p>
             </div>
         </section>
-        
-        <section id="experience">
-    <h2>Experience</h2>
-    <div class="card">
-        <h3>Banquets Crew</h3>
-        <p><span class="highlight">Duration:</span> February 2023 - Present</p>
-        <button class="expand-btn" onclick="toggleDescription(this)">Show More</button>
-        <div class="job-description" style="display: none;">
-            <p>Delivering professional service for weddings, corporate conferences and government functions. 
-            Professional communication to corporate clients and political leaders. 
-            Coordinating with clients and managing small events. 
-            Our team achieved 2024 Caterer of the Year (ACT).</p>
-        </div>
-    </div>
-    <div class="card">
-        <h3>Restructuring and Recovery Undergraduate</h3>
-        <p><span class="highlight">Duration:</span> August 2023 - January 2024</p>
-        <button class="expand-btn" onclick="toggleDescription(this)">Show More</button>
-        <div class="job-description" style="display: none;">
-            <p>Corporate restructuring and turnaround - financial advice and legislative processes. 
-            Preparing distribution statements, balance sheets, dividend payouts, and debtor schedules. 
-            Engaged in company valuations, asset realisations, ASIC reporting, and statutory standards.</p>
-        </div>
-    </div>
-    <div class="card">
-        <h3>Bunnings</h3>
-        <p><span class="highlight">Duration:</span> October 2017 - February 2021</p>
-        <button class="expand-btn" onclick="toggleDescription(this)">Show More</button>
-        <div class="job-description" style="display: none;">
-            <p>Working +20hrs part-time for 3.5 years through high school since age 15. Duties included 
-            excellent customer service, phone representative, logistics and procurement, and resolving supply chain issues.</p>
-        </div>
-    </div>
-</section>
 
+        <section id="experience">
+            <h2>Experience</h2>
+            <div class="card">
+                <h3>WiseTech Global - Finance Graduate</h3>
+                <p><span class="highlight">Duration:</span> February 2025 - Present</p>
+                <button class="expand-btn" onclick="toggleDescription(this)">Show More</button>
+                <div class="job-description" style="display: none;">
+                    <p>Rotational Graduate Program</p>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Doma Group - Banquets Crew</h3>
+                <p><span class="highlight">Duration:</span> February 2023 - Present</p>
+                <button class="expand-btn" onclick="toggleDescription(this)">Show More</button>
+                <div class="job-description" style="display: none;">
+                    <p>Delivering professional service for weddings, corporate conferences and government functions. Professional communication to corporate clients and political leaders. Coordinating with clients and managing small events.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h3>RSM Australia Partners - Restructuring and Recovery Undergraduate</h3>
+                <p><span class="highlight">Duration:</span> August 2023 - January 2024</p>
+                <button class="expand-btn" onclick="toggleDescription(this)">Show More</button>
+                <div class="job-description" style="display: none;">
+                    <p>Corporate restructuring and turnaround - financial advice and legislative processes. Preparing distribution statements, balance sheets, dividend payouts, and debtor schedules.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Bunnings Team Member</h3>
+                <p><span class="highlight">Duration:</span> October 2017 - February 2021</p>
+                <button class="expand-btn" onclick="toggleDescription(this)">Show More</button>
+                <div class="job-description" style="display: none;">
+                    <p>Working +20hrs part-time for 3.5 years through high school. Duties included excellent customer service, phone representative, logistics and procurement, and resolving supply chain issues.</p>
+                </div>
+            </div>
+        </section>
 
         <section id="career">
             <h2>Career Aspirations</h2>
-            <p>To launch my corporate career and be an integral and contributing team member in a creative, dynamic and forward-thinking organisation. Seeking an opportunity where my financial, economic, and entrepreneurial background can develop and thrive in a challenging role.</p>
+            <p>To strengthen my corporate career opporunities with the WiseTech Graduate Program and contribute to the creative, dynamic and forward-thinking organisation I am work at. I seek to apply my financial, economic, and entrepreneurial skills to make a positive impact on existing systems and processes at WiseTech.</p>
         </section>
-        
+
         <section id="projects">
-            <h2>Current Projects</h2>
+            <h2>Current Goals</h2>
             <div class="card">
-                <h3>Create a personal website</h3>
-                <p><span class="highlight">Objective:</span> To let the world know who I am!</p>
-                <p><span class="highlight">Status:</span> Completed (You're reading it now).</p>
+                <h3>Education and Career</h3>
+                <p><span class="highlight">Objective:</span> To apply what I have learnt at university and make an impact!</p>
+                <p><span class="highlight">Status:</span> In Progress (Through my journey with WiseTech).</p>
             </div>
             <div class="card">
-                <h3>Algorithmic Stock Analysis</h3>
-                <p><span class="highlight">Objective:</span> To put what I learnt throughout my degree to use in the hope of benefiting my financial prosperity.</p>
-                <p><span class="highlight">Status:</span> Currently undertaking Udemy courses.</p>
+                <h3>Health</h3>
+                <p><span class="highlight">Objective:</span> Keeping my health as a top priority.</p>
+                <p><span class="highlight">Status:</span> Consistency with the gym and outdoor activities.</p>
             </div>
             <div class="card">
-                <h3>Improve my Programming Skills</h3>
-                <p><span class="highlight">Objective:</span> To make my ideas come to life!</p>
-                <p><span class="highlight">Status:</span> It's getting there...</p>
+                <h3>Finances</h3>
+                <p><span class="highlight">Objective:</span> To set myself up for achieving financial freedom (one day).</p>
+                <p><span class="highlight">Status:</span> It's getting there...currenyly focussing on financial statement analysis for my portfolio and future purchases.</p>
             </div>
         </section>
-        
+
         <section id="goals">
             <h2>Future Goals</h2>
-            <p>During my life I would like to create a positive impact on the world around me. One method of doing so would be to establish a non-for-profit organisation; feel free to ask me directly for more specifics on this.</p>
+            <p>To create a positive impact on the world by establishing a non-for-profit organisation (It's a working progress, the details will come in time).</p>
         </section>
-        
+
         <section id="outside">
             <h2>In my free time...</h2>
-            <p>Outside of work and study, I tend to spend my time outdoors in nature or socializing with friends. On the weekends I will typically be found surfing at North Curly and Queensie. During winter I tend to gravitate towards Perisher Resort as the beach gets a little cold. I would love to learn another language and have already pursued studies in French, but will place a higher focus on this during 2025.</p>
+            <p>Outside of work and study, I tend to spend my time outdoors in nature or socializing with friends. I love surfing at North Curly and Queensie and skiing at Perisher Resort during winter. I also aim to focus more on personal wellbeing and physicla health in 2025.</p>
         </section>
-        
+
         <div class="animation-container">
             <img src="images/skier.png" alt="Skier" class="animation skier">
         </div>
-        <script>
-    document.querySelectorAll('.expand-btn').forEach(button => {
-        button.addEventListener('click', function () {
-            const jobDescription = this.nextElementSibling;
-            jobDescription.style.display = jobDescription.style.display === 'block' ? 'none' : 'block';
-            this.textContent = jobDescription.style.display === 'block' ? 'Show Less' : 'Show More';
-             });
-            });
-             </script>
     </div>
-    
+
     <footer>
-        <p>&copy; 2024 Zac Douglas
+        <p>&copy; 2025 Zac Douglas</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.expand-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const jobDescription = this.nextElementSibling;
+                jobDescription.style.display = jobDescription.style.display === 'block' ? 'none' : 'block';
+                this.textContent = jobDescription.style.display === 'block' ? 'Show Less' : 'Show More';
+            });
+        });
+    </script>
+</body>
+</html>
