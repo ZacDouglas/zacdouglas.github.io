@@ -8,60 +8,51 @@
     <style>
         :root {
             --primary-color: #83A491;
-            --secondary-color: #8FB5A0;
             --background-light: #f4f4f4;
             --background-dark: #121212;
-            --text-color-light: #333;
-            --text-color-dark: #e0e0e0;
-            --card-background-light: #f9f9f9;
-            --card-background-dark: #1e1e1e;
+            --text-light: #333;
+            --text-dark: #e0e0e0;
+            --card-light: #f9f9f9;
+            --card-dark: #1e1e1e;
+            --card-darker: #2a2a2a;
         }
 
+        /* Base styles */
         html {
             scroll-behavior: smooth;
             transition: background-color 0.3s, color 0.3s;
         }
 
         body {
-            font-family: 'Nunito', sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             margin: 0;
             padding: 0;
             background: var(--background-light);
-            color: var(--text-color-light);
+            color: var(--text-light);
             line-height: 1.6;
             transition: background-color 0.3s, color 0.3s;
         }
 
+        /* Dark mode */
         body.dark-mode {
             background: var(--background-dark);
-            color: var(--text-color-dark);
+            color: var(--text-dark);
         }
 
-        /* Dark mode adjustments */
         body.dark-mode header {
             background: var(--background-dark);
-            color: var(--primary-color);
         }
 
         body.dark-mode section {
-            background: var(--card-background-dark);
-            color: var(--text-color-dark);
+            background: var(--card-dark);
         }
 
-        body.dark-mode .card {
-            background: #2a2a2a;
-            color: var(--text-color-dark);
-        }
-
+        body.dark-mode .card, 
         body.dark-mode .timeline-content {
-            background: #2a2a2a;
-            color: var(--text-color-dark);
+            background: var(--card-darker);
         }
 
-        body.dark-mode nav a {
-            color: var(--primary-color);
-        }
-
+        /* Header and navigation */
         header {
             background: var(--background-light);
             color: var(--primary-color);
@@ -82,6 +73,7 @@
             text-decoration: underline;
         }
 
+        /* Sections */
         section {
             padding: 20px;
             margin: 20px;
@@ -90,64 +82,35 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s, color 0.3s;
         }
+        
+        section#timeline {
+            padding: 0;
+            margin: 0;
+            background: transparent;
+            border-radius: 0;
+            box-shadow: none;
+        }
 
+        /* Typography */
         h1 {
             font-size: 2.5em;
         }
 
         h2 {
-            border-bottom: 2px solid var(--primary-color);
             padding-bottom: 10px;
             margin-bottom: 20px;
         }
 
         .highlight {
-            background: var(--primary-color);
-            color: #fff;
-            padding: 5px;
-            border-radius: 3px;
+            color: var(--primary-color);
+            font-weight: bold;
         }
 
-        footer {
-            background: var(--primary-color);
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            width: 100%;
-        }
-
+        /* Layout */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
-        }
-
-        .card {
-            background: var(--card-background-light);
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .card h3 {
-            margin-top: 0;
-        }
-
-        .animation-container {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .animation-container img {
-            width: 200px;
-            height: auto;
-            margin: 1px;
         }
 
         @media (min-width: 768px) {
@@ -161,6 +124,25 @@
             }
         }
 
+        /* Cards */
+        .card {
+            background: var(--card-light);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h3 {
+            margin-top: 0;
+        }
+
+        /* Buttons */
         .expand-btn {
             background-color: var(--primary-color);
             color: white;
@@ -181,106 +163,16 @@
             margin-top: 10px;
         }
 
-        /* Timeline Styles */
-.timeline {
-    position: relative;
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px 0;
-}
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+        }
 
-.timeline::after {
-    content: '';
-    position: absolute;
-    width: 4px;
-    background: var(--primary-color);
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    margin-left: -2px;
-    transition: background-color 0.3s;
-}
-
-.timeline-item {
-    position: relative;
-    width: 50%;
-    padding: 0px 0px;
-    box-sizing: border-box;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.timeline-item:hover {
-    transform: scale(1.03);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.timeline-item.left { 
-    left: 0; 
-    text-align: right; 
-}
-
-.timeline-item.right { 
-    left: 50%; 
-    text-align: left; 
-}
-
-.timeline-content {
-    background: white;
-    padding: 15px;
-    border-radius: 8px; /* Keep rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: relative;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-/* Add a clean hover effect */
-.timeline-item:hover .timeline-content {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Hover shadow consistency */
-    border-radius: 8px; /* Ensure the corners stay rounded */
-}
-
-.timeline-item::before {
-    content: '';
-    position: absolute;
-    top: 20px;
-    width: 20px;
-    height: 20px;
-    background: var(--primary-color);
-    border-radius: 50%;
-    z-index: 1;
-    transition: transform 0.3s ease;
-}
-
-.timeline-item:hover::before {
-    transform: scale(1.2);
-}
-
-.timeline-item.left::before {
-    right: -10px;
-}
-
-.timeline-item.right::before {
-    left: -10px;
-}
-
-/* Media Query for responsiveness */
-@media (max-width: 768px) {
-    .timeline::after { left: 20px; }
-    .timeline-item { 
-        width: 100%; 
-        padding-left: 50px; 
-        padding-right: 0; 
-    }
-    .timeline-item.left, .timeline-item.right { 
-        left: 0; 
-        text-align: left; 
-    }
-    .timeline-item.left::before, .timeline-item.right::before { 
-        left: 10px; 
-    }
-}
-
-        /* Mode toggle button */
+        /* Mode toggle */
         #mode-toggle {
             position: fixed;
             top: 20px;
@@ -299,17 +191,105 @@
             transform: scale(1.1);
         }
 
+        /* Timeline Styles */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 10px 0;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            padding: 20px 40px;
+        }
+
+        .timeline-item.left {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item.right {
+            left: 50%;
+            text-align: left;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 1;
+        }
+
+        .timeline-item:hover .timeline-content {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            width: 18px;
+            height: 18px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .timeline-item.left::before {
+            right: -9px;
+        }
+
+        .timeline-item.right::before {
+            left: -9px;
+        }
+
+        /* Images */
+        .animation-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .animation-container img {
+            width: 200px;
+            height: auto;
+            margin: 1px;
+        }
+
+        /* Media Queries */
         @media (max-width: 768px) {
-            .timeline::after { left: 20px; }
+            .timeline::after { 
+                left: 20px; 
+            }
+            
             .timeline-item { 
                 width: 100%; 
                 padding-left: 50px; 
                 padding-right: 0; 
             }
+            
             .timeline-item.left, .timeline-item.right { 
                 left: 0; 
                 text-align: left; 
             }
+            
             .timeline-item.left::before, .timeline-item.right::before { 
                 left: 10px; 
             }
@@ -322,20 +302,24 @@
     <header>
         <h1>Zac Douglas</h1>
         <nav>
+            <a href="#summary">Summary</a>
             <a href="#timeline">Overview</a>
             <a href="#education">Education</a>
             <a href="#experience">Experience</a>
-            <a href="#projects">Current Goals</a>
             <a href="#career">Career Aspirations</a>
-            <a href="#goals">Long Term Goals</a>
             <a href="#outside">In my free time...</a>
         </nav>
     </header>
 
     <div class="container">
-        <!-- Rest of the original HTML content remains the same as in the previous document -->
+        <!-- New Summary Section -->
+        <section id="summary">
+            <h2>Summary</h2>
+            <p>Finance professional with a strong academic background in Commerce, specializing in Finance and Economics. Currently working at WiseTech Global in the Finance Department, bringing analytical skills and economic knowledge to the tech industry. Passionate about creating positive impact through financial solutions and maintaining a healthy work-life balance.</p>
+        </section>
+        
         <section id="timeline">
-            <h2>Timeline Overview</h2>
+            <h2></h2>
             <div class="timeline">
                 <div class="timeline-item left">
                     <div class="timeline-content">
@@ -370,7 +354,6 @@
             </div>
         </section>
 
-        <!-- Remaining sections from the original HTML -->
         <section id="education">
             <h2>Education</h2>
             <div class="card">
@@ -393,7 +376,6 @@
             </div>
         </section>
 
-        <!-- Rest of the sections remain the same as in the original HTML -->
         <section id="experience">
             <h2>Experience</h2>
             <div class="card">
@@ -430,39 +412,15 @@
             </div>
         </section>
 
-        <!-- Remaining sections from the original HTML -->
         <section id="career">
             <h2>Career Aspirations</h2>
             <p>To strengthen my corporate career opportunities with the WiseTech Graduate Program and contribute to the creative, dynamic and forward-thinking organisation I am working at. I seek to apply my financial, economic, and entrepreneurial skills to make a positive impact on existing systems and processes at WiseTech.</p>
-        </section>
-
-        <section id="projects">
-            <h2>Current Goals</h2>
-            <div class="card">
-                <h3>Education and Career</h3>
-                <p><span class="highlight">Objective:</span> To apply what I have learnt at university and make an impact!</p>
-                <p><span class="highlight">Status:</span> In Progress (Through my journey with WiseTech).</p>
-            </div>
-            <div class="card">
-                <h3>Health</h3>
-                <p><span class="highlight">Objective:</span> Keeping my health as a top priority.</p>
-                <p><span class="highlight">Status:</span> Consistency with the gym and outdoor activities.</p>
-            </div>
-            <div class="card">
-                <h3>Finances</h3>
-                <p><span class="highlight">Objective:</span> To set myself up for achieving financial freedom (one day).</p>
-                <p><span class="highlight">Status:</span> It's getting there...currently focusing on financial statement analysis for my portfolio and future purchases.</p>
-            </div>
-        </section>
-
-        <section id="goals">
-            <h2>Future Goals</h2>
-            <p>To create a positive impact on the world by establishing a non-for-profit organisation (It's a working progress, the details will come in time).</p>
+            <p>In the long term, I hope to create a positive impact on the world by establishing a non-for-profit organisation that leverages my financial expertise.</p>
         </section>
 
         <section id="outside">
             <h2>In my free time...</h2>
-            <p>Outside of work and study, I like to spend my time outdoors in nature or socializing with friends. I love surfing at North Curly and Queensie or skiing at Perisher during winter. This year I am focused on maintining my personal wellbeing and and improving my physical health. </p>
+            <p>Outside of work and study, I like to spend my time outdoors in nature or socializing with friends. I love surfing at North Curly and Queensie or skiing at Perisher during winter. This year I am focused on maintining my personal wellbeing and and improving my physical health.</p>
         </section>
 
         <div class="animation-container">
