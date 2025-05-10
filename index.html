@@ -172,23 +172,39 @@
             width: 100%;
         }
 
-        /* Mode toggle */
-        #mode-toggle {
+        /* Mode toggle and utility buttons */
+        .top-controls {
             position: fixed;
             top: 20px;
             right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        #mode-toggle, .utility-btn {
             background: var(--primary-color);
             color: white;
             border: none;
             padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
-            z-index: 1000;
             transition: transform 0.3s;
+            text-decoration: none;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        #mode-toggle:hover {
+        #mode-toggle:hover, .utility-btn:hover {
             transform: scale(1.1);
+        }
+
+        .utility-btn svg {
+            margin-right: 5px;
+            width: 20px;
+            height: 20px;
         }
 
         /* Timeline Styles */
@@ -293,11 +309,33 @@
             .timeline-item.left::before, .timeline-item.right::before { 
                 left: 10px; 
             }
+            
+            .top-controls {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <button id="mode-toggle">🌓 Toggle Mode</button>
+    <div class="top-controls">
+        <a href="https://www.linkedin.com/in/zacpdouglas" target="_blank" class="utility-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+            LinkedIn
+        </a>
+        <a href="resume/zac_douglas_resume.pdf" download class="utility-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Resume
+        </a>
+        <button id="mode-toggle">🌓 Toggle Mode</button>
+    </div>
 
     <header>
         <h1>Zac Douglas</h1>
@@ -315,7 +353,7 @@
         <!-- New Summary Section -->
         <section id="summary">
             <h2>Summary</h2>
-            <p> I am a 22-year-old with a strong education in economics and finance, passionate about personal growth, technology, and creating solutions that solve real-world problems. I value continuous learning and meaningful connections, and I’m excited to contribute and grow through my work at WiseTech.</p>
+            <p> I am a 22-year-old with a strong education in economics and finance, passionate about personal growth, technology, and creating solutions that solve real-world problems. I value continuous learning and meaningful connections, and I'm excited to contribute and grow through my work at WiseTech.</p>
         </section>
         
         <section id="timeline">
