@@ -122,6 +122,9 @@
             .container > section {
                 flex: 1 1 calc(50% - 40px);
             }
+            .container > section#video {
+                flex: 1 1 100%;
+            }
         }
 
         /* Cards */
@@ -277,6 +280,64 @@
             left: -9px;
         }
 
+        /* Video Styles */
+        .game-container {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .game-container {
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+        }
+
+        #portfolioVideo {
+            border: 3px solid #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background: #000;
+        }
+
+        .game-controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .game-btn {
+            background: #fff;
+            color: #667eea;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .game-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .game-info {
+            color: white;
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .game-instructions {
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
         /* Images */
         .animation-container {
             text-align: center;
@@ -313,6 +374,11 @@
             .top-controls {
                 flex-direction: column;
             }
+
+            #snowvid {
+                width: 90%;
+                height: auto;
+            }
         }
     </style>
 </head>
@@ -342,6 +408,7 @@
         <nav>
             <a href="#summary">Summary</a>
             <a href="#timeline">Overview</a>
+            <a href="#video">Watch Video</a>
             <a href="#education">Education</a>
             <a href="#experience">Experience</a>
             <a href="#career">Career Aspirations</a>
@@ -350,10 +417,10 @@
     </header>
 
     <div class="container">
-        <!-- New Summary Section -->
+        <!-- Summary Section -->
         <section id="summary">
             <h2>Summary</h2>
-            <p> I am a 22-year-old with a strong education in economics and finance, passionate about personal growth, technology, and creating solutions that solve real-world problems. I value continuous learning and meaningful connections, and I'm excited to contribute and grow through my work at WiseTech.</p>
+            <p>I am a 22-year-old with a strong education in economics and finance, passionate about personal growth, technology, and creating solutions that solve real-world problems. I value continuous learning and meaningful connections, and I'm excited to contribute and grow through my work at WiseTech.</p>
         </section>
         
         <section id="timeline">
@@ -388,6 +455,28 @@
                         <h3>2025 - It begins!</h3>
                         <p>Successfully joined the tech industry at WiseTech's HQ in the Finance Department.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW VIDEO SECTION -->
+        <section id="video">
+            <h2>🎬 Watch My Journey</h2>
+            <div class="game-container">
+                <video id="snowvid" width="800" height="400" controls>
+                    <source src="video/snowvid.mov" type="video/mov">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="game-info">
+                    <div>Duration: <span id="duration">--:--</span> | Current: <span id="currentTime">00:00</span> | Volume: <span id="volume">100%</span></div>
+                </div>
+                <div class="game-instructions">
+                    Click play to watch my professional journey and highlights!
+                </div>
+                <div class="game-controls">
+                    <button class="game-btn" onclick="playVideo()">Play</button>
+                    <button class="game-btn" onclick="pauseVideo()">Pause</button>
+                    <button class="game-btn" onclick="resetVideo()">Restart</button>
                 </div>
             </div>
         </section>
@@ -471,33 +560,40 @@
     </footer>
 
     <script>
-        // Expand/Collapse Job Descriptions
-        function toggleDescription(button) {
-            const jobDescription = button.nextElementSibling;
-            jobDescription.style.display = jobDescription.style.display === 'block' ? 'none' : 'block';
-            button.textContent = jobDescription.style.display === 'block' ? 'Show Less' : 'Show More';
+        // Video Functions
+        const video = document.getElementById('snowvid');
+
+        function playVideo() {
+            video.play();
         }
 
-        // Dark Mode Toggle
-        const modeToggle = document.getElementById('mode-toggle');
-        const body = document.body;
-
-        // Check for saved dark mode preference
-        const savedDarkMode = localStorage.getItem('darkMode');
-        if (savedDarkMode === 'enabled') {
-            body.classList.add('dark-mode');
+        function pauseVideo() {
+            video.pause();
         }
 
-        modeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            
-            // Save preference in localStorage
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                localStorage.setItem('darkMode', 'disabled');
-            }
+        function resetVideo() {
+            video.currentTime = 0;
+            video.pause();
+        }
+
+        // Update video info
+        video.addEventListener('loadedmetadata', function() {
+            const duration = Math.floor(video.duration);
+            const minutes = Math.floor(duration / 60);
+            const seconds = duration % 60;
+            document.getElementById('duration').textContent = 
+                `${minutes}:${seconds.toString().padStart(2, '0')}`;
         });
-    </script>
-</body>
-</html>
+
+        video.addEventListener('timeupdate', function() {
+            const current = Math.floor(video.currentTime);
+            const minutes = Math.floor(current / 60);
+            const seconds = current % 60;
+            document.getElementById('currentTime').textContent = 
+                `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        });
+
+        video.addEventListener('volumechange', function() {
+            const volume = Math.round(video.volume * 100);
+            document.getElementById('volume').textContent = `${volume}%`;
+        });
