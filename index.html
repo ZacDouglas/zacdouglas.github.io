@@ -4,596 +4,911 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zac Douglas</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #83A491;
-            --background-light: #f4f4f4;
-            --background-dark: #121212;
-            --text-light: #333;
-            --text-dark: #e0e0e0;
-            --card-light: #f9f9f9;
-            --card-dark: #1e1e1e;
-            --card-darker: #2a2a2a;
+            --sage: #83A491;
+            --sage-dark: #5e7d6b;
+            --sage-light: #b5cfc4;
+            --sage-pale: #eaf1ed;
+            --bg: #f6f4ef;
+            --text: #1c1c1a;
+            --text-muted: #6b6b65;
+            --text-faint: #a8a8a0;
+            --border: #dddbd4;
+            --card-bg: #ffffff;
         }
 
-        /* Base styles */
-        html {
-            scroll-behavior: smooth;
-            transition: background-color 0.3s, color 0.3s;
+        body.dark {
+            --bg: #111110;
+            --text: #e6e2d9;
+            --text-muted: #8a8a82;
+            --text-faint: #555550;
+            --border: #252522;
+            --card-bg: #1a1a18;
+            --sage-pale: #172018;
         }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: var(--background-light);
-            color: var(--text-light);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
-            transition: background-color 0.3s, color 0.3s;
+            transition: background 0.3s, color 0.3s;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Dark mode */
-        body.dark-mode {
-            background: var(--background-dark);
-            color: var(--text-dark);
-        }
-
-        body.dark-mode header {
-            background: var(--background-dark);
-        }
-
-        body.dark-mode section {
-            background: var(--card-dark);
-        }
-
-        body.dark-mode .card, 
-        body.dark-mode .timeline-content {
-            background: var(--card-darker);
-        }
-
-        /* Header and navigation */
-        header {
-            background: var(--background-light);
-            color: var(--primary-color);
-            padding: 20px;
-            text-align: center;
-        }
-
-        nav a {
-            color: var(--primary-color);
-            text-decoration: none;
-            padding: 0 15px;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: #6b8c73;
-            text-decoration: underline;
-        }
-
-        /* Sections */
-        section {
-            padding: 20px;
-            margin: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s, color 0.3s;
-        }
-        
-        section#timeline {
-            padding: 0;
-            margin: 0;
-            background: transparent;
-            border-radius: 0;
-            box-shadow: none;
-        }
-
-        /* Typography */
-        h1 {
-            font-size: 2.5em;
-        }
-
-        h2 {
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-
-        .highlight {
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-
-        /* Layout */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        @media (min-width: 768px) {
-            .container {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 20px;
-            }
-            .container > section {
-                flex: 1 1 calc(50% - 40px);
-            }
-            .container > section#video {
-                flex: 1 1 100%;
-            }
-        }
-
-        /* Cards */
-        .card {
-            background: var(--card-light);
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .card h3 {
-            margin-top: 0;
-        }
-
-        /* Buttons */
-        .expand-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-            display: block;
-            transition: background-color 0.3s;
-        }
-
-        .expand-btn:hover {
-            background-color: #6b8c73;
-        }
-
-        .job-description {
-            margin-top: 10px;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--primary-color);
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            width: 100%;
-        }
-
-        /* Mode toggle and utility buttons */
-        .top-controls {
+        /* ── TOPBAR ── */
+        .topbar {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 10px;
-            z-index: 1000;
-        }
-
-        #mode-toggle, .utility-btn {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: transform 0.3s;
-            text-decoration: none;
-            font-size: 16px;
+            inset: 0 0 auto 0;
+            z-index: 200;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
+            padding: 0 36px;
+            height: 56px;
+            background: rgba(246,244,239,0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.3s, border-color 0.3s;
+        }
+        body.dark .topbar { background: rgba(17,17,16,0.92); }
+
+        .topbar-logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1rem;
+            color: var(--text);
         }
 
-        #mode-toggle:hover, .utility-btn:hover {
-            transform: scale(1.1);
+        .topbar-nav {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .topbar-nav a {
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        .topbar-nav a:hover { color: var(--text); }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .utility-btn svg {
-            margin-right: 5px;
-            width: 20px;
-            height: 20px;
+        .topbar-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 14px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            background: transparent;
+            text-decoration: none;
+            cursor: pointer;
+            transition: border-color 0.15s, color 0.15s, background 0.15s;
         }
+        .topbar-btn:hover { border-color: var(--text-muted); color: var(--text); }
+        .topbar-btn.primary {
+            background: var(--text);
+            color: var(--bg);
+            border-color: var(--text);
+        }
+        .topbar-btn.primary:hover { opacity: 0.8; }
+        .topbar-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
 
-        /* Timeline Styles */
-        .timeline {
+        /* ── HERO ── */
+        .hero {
+            min-height: 100svh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 80px 36px 72px;
             position: relative;
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
         }
 
-        .timeline::after {
+        .hero-eyebrow {
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--sage);
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeUp 0.6s 0.1s forwards;
+        }
+
+        .hero h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(4rem, 10vw, 9rem);
+            line-height: 0.95;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeUp 0.6s 0.2s forwards;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--sage);
+        }
+
+        .hero-bottom {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 32px;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 0.6s 0.35s forwards;
+        }
+
+        .hero-desc {
+            max-width: 380px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        /* ── PAGE LAYOUT ── */
+        .page {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 36px 120px;
+        }
+
+        /* ── SECTION ── */
+        .section {
+            padding-top: 80px;
+            border-top: 1px solid var(--border);
+            margin-top: 80px;
+        }
+
+        .section-meta {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-faint);
+            padding-top: 8px;
+            position: sticky;
+            top: 72px;
+        }
+
+        .section-head h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--text);
+            margin-bottom: 36px;
+        }
+
+        /* ── TIMELINE ── */
+        .timeline-track {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        /* connecting line */
+        .timeline-track::before {
             content: '';
             position: absolute;
-            width: 4px;
-            background: var(--primary-color);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -2px;
+            top: 6px;
+            left: 7px;
+            right: 7px;
+            height: 1px;
+            background: var(--border);
+            z-index: 0;
         }
 
-        .timeline-item {
+        .tl-node {
             position: relative;
-            width: 50%;
-            box-sizing: border-box;
-            padding: 20px 40px;
+            padding-top: 26px;
+            padding-right: 20px;
+        }
+        .tl-node:last-child { padding-right: 0; }
+
+        .tl-dot {
+            position: absolute;
+            top: 0; left: 0;
+            width: 13px; height: 13px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 1.5px solid var(--border);
+            z-index: 1;
+            transition: border-color 0.2s, background 0.2s, transform 0.2s;
+        }
+        .tl-node:hover .tl-dot {
+            border-color: var(--sage);
+            background: var(--sage);
+            transform: scale(1.2);
         }
 
-        .timeline-item.left {
-            left: 0;
-            text-align: right;
+        .tl-year {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            color: var(--text-faint);
+            margin-bottom: 7px;
+            transition: color 0.2s;
+        }
+        .tl-node:hover .tl-year { color: var(--sage); }
+
+        .tl-title {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.3;
+            margin-bottom: 5px;
         }
 
-        .timeline-item.right {
-            left: 50%;
+        .tl-desc {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+
+        /* ── EXPERIENCE CARDS ── */
+        .card-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            background: var(--border);
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 20px 24px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2px 24px;
+            transition: background 0.15s;
+        }
+        .card:hover { background: var(--sage-pale); }
+
+        .card-body { grid-column: 1; }
+        .card-side { grid-column: 2; text-align: right; }
+
+        .card-title {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .card-sub {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 1px;
+        }
+
+        .card-date {
+            font-size: 0.76rem;
+            color: var(--text-faint);
+            font-variant-numeric: tabular-nums;
+            white-space: nowrap;
+            padding-top: 3px;
+        }
+
+        .card-detail {
+            grid-column: 1 / -1;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding-top 0.3s ease;
+        }
+        .card-detail.open {
+            max-height: 200px;
+            padding-top: 12px;
+        }
+
+        .card-toggle {
+            grid-column: 1 / -1;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 8px;
+            font-size: 0.74rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: var(--text-faint);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            padding: 0;
+            transition: color 0.15s;
             text-align: left;
         }
-
-        .timeline-content {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            z-index: 1;
+        .card-toggle:hover { color: var(--sage); }
+        .card-toggle .chevron {
+            display: inline-block;
+            transition: transform 0.25s;
+            font-style: normal;
         }
 
-        .timeline-item:hover .timeline-content {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        /* ── EDUCATION ── */
+        .edu-list { border-top: 1px solid var(--border); }
+
+        .edu-card {
+            border-bottom: 1px solid var(--border);
+            padding: 22px 0;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 4px 28px;
+            align-items: start;
         }
 
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            top: 30px;
+        .edu-name {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .edu-detail {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 3px;
+            line-height: 1.5;
+        }
+        .edu-year {
+            font-size: 0.76rem;
+            color: var(--text-faint);
+            text-align: right;
+            white-space: nowrap;
+            padding-top: 3px;
+        }
+        .edu-note {
+            grid-column: 1 / -1;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            background: var(--sage-pale);
+            border-radius: 4px;
+            padding: 10px 14px;
+            margin-top: 12px;
+            line-height: 1.6;
+            border-left: 2px solid var(--sage-light);
+        }
+
+        /* ── ABOUT TEXT ── */
+        .about-text {
+            font-size: 1.05rem;
+            color: var(--text);
+            line-height: 1.8;
+            max-width: 600px;
+        }
+        .about-text strong { color: var(--sage-dark); font-weight: 600; }
+        body.dark .about-text strong { color: var(--sage-light); }
+
+        /* ── ASPIRATIONS ── */
+        .aspirations-text {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            max-width: 600px;
+        }
+        .aspirations-text p + p { margin-top: 14px; }
+
+        /* ── HOBBIES ── */
+        .hobby-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            background: var(--border);
+        }
+
+        .hobby-item {
+            background: var(--card-bg);
+            padding: 14px 18px;
+            font-size: 0.83rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.15s, color 0.15s;
+        }
+        .hobby-item:hover { background: var(--sage-pale); color: var(--text); }
+        .hobby-item .hi {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
             width: 18px;
             height: 18px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            z-index: 2;
+            color: var(--sage);
         }
-
-        .timeline-item.left::before {
-            right: -9px;
+        .hobby-item .hi svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
         }
+        .hobby-item:hover .hi { color: var(--sage-dark); }
 
-        .timeline-item.right::before {
-            left: -9px;
-        }
-
-        /* Video Styles */
-        .game-container {
-            text-align: center;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        body.dark-mode .game-container {
-            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
-        }
-
-        #portfolioVideo {
-            border: 3px solid #fff;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            background: #000;
-        }
-
-        .game-controls {
-            margin-top: 20px;
+        /* ── FOOTER ── */
+        .footer-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 28px 36px;
+            border-top: 1px solid var(--border);
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-name {
+            font-family: 'DM Serif Display', serif;
+            font-size: 0.88rem;
+            color: var(--text-faint);
+        }
+        .footer-copy {
+            font-size: 0.74rem;
+            color: var(--text-faint);
         }
 
-        .game-btn {
-            background: #fff;
-            color: #667eea;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(14px); }
+            to   { opacity: 1; transform: none; }
         }
 
-        .game-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
         }
+        .reveal.visible { opacity: 1; transform: none; }
 
-        .game-info {
-            color: white;
-            margin-top: 15px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .game-instructions {
-            color: rgba(255, 255, 255, 0.9);
-            margin-top: 10px;
-            font-size: 14px;
-        }
-
-        /* Images */
-        .animation-container {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .animation-container img {
-            width: 200px;
-            height: auto;
-            margin: 1px;
-        }
-
-        /* Media Queries */
-        @media (max-width: 768px) {
-            .timeline::after { 
-                left: 20px; 
+        /* ── RESPONSIVE ── */
+        @media (max-width: 860px) {
+            .topbar { padding: 0 20px; }
+            .topbar-nav { display: none; }
+            .section-meta { grid-template-columns: 1fr; gap: 10px; }
+            .section-label { position: static; padding-top: 0; }
+            .timeline-track {
+                grid-template-columns: 1fr;
+                padding-left: 22px;
+                gap: 0;
             }
-            
-            .timeline-item { 
-                width: 100%; 
-                padding-left: 50px; 
-                padding-right: 0; 
+            .timeline-track::before {
+                top: 6px; bottom: 0;
+                left: 6px; right: auto;
+                width: 1px; height: auto;
             }
-            
-            .timeline-item.left, .timeline-item.right { 
-                left: 0; 
-                text-align: left; 
-            }
-            
-            .timeline-item.left::before, .timeline-item.right::before { 
-                left: 10px; 
-            }
-            
-            .top-controls {
-                flex-direction: column;
-            }
-
-            #snowvid {
-                width: 90%;
-                height: auto;
-            }
+            .tl-node { padding: 0 0 24px 20px; }
+            .tl-dot { left: -16px; top: 1px; }
+            .hero { padding: 80px 24px 52px; }
+            .page { padding: 0 24px 80px; }
+            .footer-inner { padding: 24px; }
         }
+        @media (max-width: 540px) {
+            .card { grid-template-columns: 1fr; }
+            .card-side { text-align: left; }
+            .edu-card { grid-template-columns: 1fr; }
+            .edu-year { text-align: left; }
+            .hero h1 { font-size: 3.4rem; }
+            .topbar-btn span { display: none; }
+        }
+        /* ── RESOURCES ── */
+        .resource-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            background: var(--border);
+        }
+
+        .resource-item {
+            background: var(--card-bg);
+            padding: 18px 20px;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            transition: background 0.15s;
+        }
+        .resource-item:hover { background: var(--sage-pale); }
+
+        .resource-name {
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.2;
+        }
+
+        .resource-url {
+            font-size: 0.74rem;
+            color: var(--sage);
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .resource-desc {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-top: 4px;
+        }
+
     </style>
 </head>
 <body>
-    <div class="top-controls">
-        <a href="https://www.linkedin.com/in/zacpdouglas" target="_blank" class="utility-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                <rect x="2" y="9" width="4" height="12"></rect>
-                <circle cx="4" cy="4" r="2"></circle>
+
+<!-- TOPBAR -->
+<header class="topbar">
+    <div class="topbar-logo">Zac Douglas</div>
+    <nav>
+        <ul class="topbar-nav">
+            <li><a href="#about">About</a></li>
+            <li><a href="#journey">Journey</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#outside">Outside Work</a></li>
+            <li><a href="#resources">Resources</a></li>
+        </ul>
+    </nav>
+    <div class="topbar-right">
+        <a href="https://www.linkedin.com/in/zacpdouglas" target="_blank" class="topbar-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/>
+                <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
             </svg>
-            LinkedIn
+            <span>LinkedIn</span>
         </a>
-        <a href="resume/zac_douglas_resume.pdf" download class="utility-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                <polyline points="7 10 12 15 17 10"></polyline>
-                <line x1="12" y1="15" x2="12" y2="3"></line>
+        <a href="resume/zac_douglas_resume.pdf" download class="topbar-btn primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
-            Resume
+            <span>Resume</span>
         </a>
-        <button id="mode-toggle">🌓 Toggle Mode</button>
+        <button id="mode-toggle" class="topbar-btn" title="Toggle dark mode">🌓</button>
     </div>
+</header>
 
-    <header>
-        <h1>Zac Douglas</h1>
-        <nav>
-            <a href="#summary">Summary</a>
-            <a href="#timeline">Overview</a>
-            <a href="#video">Watch Video</a>
-            <a href="#education">Education</a>
-            <a href="#experience">Experience</a>
-            <a href="#career">Career Aspirations</a>
-            <a href="#outside">In my free time...</a>
-        </nav>
-    </header>
-
-    <div class="container">
-        <!-- Summary Section -->
-        <section id="summary">
-            <h2>Summary</h2>
-            <p>I am a 22-year-old with a strong education in economics and finance, passionate about personal growth, technology, and creating solutions that solve real-world problems. I value continuous learning and meaningful connections, and I'm excited to contribute and grow through my work at WiseTech.</p>
-        </section>
-        
-        <section id="timeline">
-            <h2></h2>
-            <div class="timeline">
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <h3>2020 - Graduated Highschool</h3>
-                        <p>Begun the year with COVID, ended with a Higher School Certificate!</p>
-                    </div>
-                </div>
-                <div class="timeline-item right">
-                    <div class="timeline-content">
-                        <h3>2021 - Commenced University</h3>
-                        <p>Enrolled in Engineering and Commerce.</p>
-                    </div>
-                </div>
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <h3>2023 - The first offer!</h3>
-                        <p>Commenced my first corporate job at RSM Australia Partners.</p>
-                    </div>
-                </div>
-                <div class="timeline-item right">
-                    <div class="timeline-content">
-                        <h3>2024 - Graduated University</h3>
-                        <p>Graduated with a Bachelor of Commerce program at ANU, majoring in Finance & Economics.</p>
-                    </div>
-                </div>
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <h3>2025 - It begins!</h3>
-                        <p>Successfully joined the tech industry at WiseTech's HQ in the Finance Department.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW VIDEO SECTION -->
-        <section id="video">
-            <h2>🎬 Watch My Journey</h2>
-            <div class="game-container">
-                <video id="snowvid" width="800" height="400" controls>
-                    <source src="video/snowvid.mov" type="video/mov">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="game-info">
-                    <div>Duration: <span id="duration">--:--</span> | Current: <span id="currentTime">00:00</span> | Volume: <span id="volume">100%</span></div>
-                </div>
-                <div class="game-instructions">
-                    Click play to watch my professional journey and highlights!
-                </div>
-                <div class="game-controls">
-                    <button class="game-btn" onclick="playVideo()">Play</button>
-                    <button class="game-btn" onclick="pauseVideo()">Pause</button>
-                    <button class="game-btn" onclick="resetVideo()">Restart</button>
-                </div>
-            </div>
-        </section>
-
-        <section id="education">
-            <h2>Education</h2>
-            <div class="card">
-                <h3>Charted Accountants Australia and New Zealand (2025 - 2027)</h3>
-                <p><span class="highlight">Coursework:</span> To be continued...</p>
-            </div>
-            <div class="card">
-                <h3>The Australian National University (2021 - 2024)</h3>
-                <p><span class="highlight">Degree:</span> Bachelor of Commerce</p>
-                <p><span class="highlight">Majors:</span> Finance, Economics</p>
-                <p><span class="highlight">GPA:</span> 6.077</p>
-                <p><span class="highlight">WAM:</span> 75</p>
-                <p><span class="highlight">Coursework:</span> Finance, Economics, Mathematics, Econometrics, Statistics, Game Theory</p>
-                <p><b>Special Industry Project:</b> Worked on a group project with Aspen Medical through the ANU College of Business and Economics. Proposed predictive analytics solution to client for treatment of Chronic Disease.</p>
-            </div>
-            <div class="card">
-                <h3>Shore, Sydney Church of England Grammar School (2015 - 2020)</h3>
-                <p><span class="highlight">ATAR:</span> 95.5</p>
-                <p><span class="highlight">Coursework:</span> Extension Mathematics, Advanced Mathematics, Economics, Chemistry, Business Studies, Standard English.</p>
-            </div>
-        </section>
-
-        <section id="experience">
-            <h2>Experience</h2>
-            <div class="card">
-                <h3>WiseTech Global - Finance Graduate</h3>
-                <p><span class="highlight">Duration:</span> February 2025 - Present</p>
-                <button class="expand-btn" onclick="toggleDescription(this)">Show More</button>
-                <div class="job-description" style="display: none;">
-                    <p>Rotational Graduate Program</p>
-                </div>
-            </div>
-            <div class="card">
-                <h3>Doma Group - Banquets Crew</h3>
-                <p><span class="highlight">Duration:</span> February 2023 - Present</p>
-                <button class="expand-btn" onclick="toggleDescription(this)">Show More</button>
-                <div class="job-description" style="display: none;">
-                    <p>Delivering professional service for weddings, corporate conferences and government functions. Professional communication to corporate clients and political leaders. Coordinating with clients and managing small events.</p>
-                </div>
-            </div>
-            <div class="card">
-                <h3>RSM Australia Partners - Restructuring and Recovery Undergraduate</h3>
-                <p><span class="highlight">Duration:</span> August 2023 - January 2024</p>
-                <button class="expand-btn" onclick="toggleDescription(this)">Show More</button>
-                <div class="job-description" style="display: none;">
-                    <p>Corporate restructuring and turnaround - financial advice and legislative processes. Preparing distribution statements, balance sheets, dividend payouts, and debtor schedules.</p>
-                </div>
-            </div>
-            <div class="card">
-                <h3>Bunnings Team Member</h3>
-                <p><span class="highlight">Duration:</span> October 2017 - February 2021</p>
-                <button class="expand-btn" onclick="toggleDescription(this)">Show More</button>
-                <div class="job-description" style="display: none;">
-                    <p>Working +20hrs part-time for 3.5 years through high school. Duties included excellent customer service, phone representative, logistics and procurement, and resolving supply chain issues.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="career">
-            <h2>Career Aspirations</h2>
-            <p>To strengthen my corporate career opportunities with the WiseTech Graduate Program and contribute to the creative, dynamic and forward-thinking organisation I am working at. I seek to apply my financial, economic, and entrepreneurial skills to make a positive impact on existing systems and processes at WiseTech.</p>
-            <p>In the long term, I hope to create a positive impact on the world by establishing a non-for-profit organisation that leverages my financial expertise.</p>
-        </section>
-
-        <section id="outside">
-            <h2>In my free time...</h2>
-            <p>Outside of work and study, I like to spend my time outdoors in nature or socializing with friends. I love surfing at North Curly and Queensie or skiing at Perisher during winter. This year I am focused on maintining my personal wellbeing and and improving my physical health.</p>
-        </section>
-
-        <div class="animation-container">
-            <img src="images/skier.png" alt="Skier" class="animation skier">
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-eyebrow">Finance Graduate &nbsp;·&nbsp; WiseTech Global &nbsp;·&nbsp; Sydney, AU</div>
+    <h1>Zac<br><em>Douglas</em></h1>
+    <div class="hero-bottom">
+        <p class="hero-desc">Economics &amp; finance graduate passionate about technology, global trade, education, Web3.0, and being part of solutions that create value and transform the world.</p>
+        <div class="hero-actions">
+            <a href="#about" class="topbar-btn">About</a>
+            <a href="resume/zac_douglas_resume.pdf" download class="topbar-btn primary">Download CV</a>
         </div>
     </div>
+</section>
 
-    <footer>
-        <p>&copy; 2025 Zac Douglas</p>
-    </footer>
+<!-- MAIN -->
+<main class="page">
 
-    <script>
-        // Video Functions
-        const video = document.getElementById('snowvid');
+    <!-- ABOUT -->
+    <section id="about" class="section reveal">
+        <div class="section-meta">
+            <span class="section-label">About</span>
+            <div class="section-head">
+                <h2>Who I am</h2>
+                <p class="about-text">
+                    I'm a <strong>finance graduate</strong> with a strong foundation in economics, logistics, ERP Implementation, and am currently on a rotational program at <strong>WiseTech Global</strong> at the Sydney HQ. I'm energised by work at the intersection of <strong>finance and technology</strong>, and I value continuous learning and developing meaningful professional connections.
+                </p>
+                <p class="about-text" style="margin-top:16px;">
+                    My interests span the <strong>global economy</strong>, trade flows, and supply chains — the infrastructure that moves the world — as well as the emerging financial layer being built on top of it: <strong>digital finance, Web3, real-world asset tokenisation, and stablecoins</strong>. I believe these technologies will fundamentally reshape how capital and value move across borders. Lets strive for free markets, ones with reduced deadweight loss. 
+                </p>
+                <p class="about-text" style="margin-top:16px;">
+                    In the long term, I hope to leverage my expertise, connections and capital to create positive change through a not-for-profit organisation.
+                </p>            </div>
+        </div>
+    </section>
 
-        function playVideo() {
-            video.play();
-        }
+    <!-- JOURNEY / TIMELINE -->
+    <section id="journey" class="section reveal">
+        <div class="section-meta">
+            <span class="section-label">Journey</span>
+            <div class="section-head">
+                <h2>Career timeline</h2>
+                <div class="timeline-track">
+                    <div class="tl-node">
+                        <div class="tl-dot"></div>
+                        <div class="tl-year">2020</div>
+                        <div class="tl-title">Graduated High School</div>
+                        <div class="tl-desc">Finished Shore Grammar with an ATAR of 95.5, navigating a disrupted COVID year.</div>
+                    </div>
+                    <div class="tl-node">
+                        <div class="tl-dot"></div>
+                        <div class="tl-year">2021</div>
+                        <div class="tl-title">Commenced University</div>
+                        <div class="tl-desc">Enrolled in Engineering and Commerce at the Australian National University.</div>
+                    </div>
+                    <div class="tl-node">
+                        <div class="tl-dot"></div>
+                        <div class="tl-year">2023</div>
+                        <div class="tl-title">First Corporate Role</div>
+                        <div class="tl-desc">Joined RSM Australia Partners in Restructuring &amp; Recovery.</div>
+                    </div>
+                    <div class="tl-node">
+                        <div class="tl-dot"></div>
+                        <div class="tl-year">2024</div>
+                        <div class="tl-title">Graduated University</div>
+                        <div class="tl-desc">Bachelor of Commerce at ANU, majoring in Finance &amp; Economics. GPA 6.077.</div>
+                    </div>
+                    <div class="tl-node">
+                        <div class="tl-dot"></div>
+                        <div class="tl-year">2025</div>
+                        <div class="tl-title">WiseTech Global</div>
+                        <div class="tl-desc">Finance Graduate at WiseTech's Sydney HQ on a Rotational Program.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        function pauseVideo() {
-            video.pause();
-        }
+    <!-- EDUCATION -->
+    <section id="education" class="section reveal">
+        <div class="section-meta">
+            <span class="section-label">Education</span>
+            <div class="section-head">
+                <h2>Academic background</h2>
+                <div class="edu-list">
+                    <div class="edu-card">
+                        <div>
+                            <div class="edu-name">Chartered Accountants Australia &amp; New Zealand</div>
+                            <div class="edu-detail">CA Program — in progress.</div>
+                        </div>
+                        <div class="edu-year">2025 – 2027</div>
+                    </div>
+                    <div class="edu-card">
+                        <div>
+                            <div class="edu-name">The Australian National University</div>
+                            <div class="edu-detail">Bachelor of Commerce &nbsp;·&nbsp; Finance &amp; Economics &nbsp;·&nbsp; GPA 6.077 &nbsp;·&nbsp; WAM 75</div>
+                            <div class="edu-detail">Finance, Economics, Mathematics, Econometrics, Statistics, Game Theory</div>
+                        </div>
+                        <div class="edu-year">2021 – 2024</div>
+                        <div class="edu-note">
+                            <strong>Industry Project —</strong> Collaborated with Aspen Medical through ANU College of Business &amp; Economics. Proposed a predictive analytics solution for the treatment of chronic disease.
+                        </div>
+                    </div>
+                    <div class="edu-card">
+                        <div>
+                            <div class="edu-name">Shore, Sydney Church of England Grammar School</div>
+                            <div class="edu-detail">ATAR 95.5 &nbsp;·&nbsp; Extension &amp; Advanced Mathematics, Economics, Chemistry, Business Studies, Standard English</div>
+                        </div>
+                        <div class="edu-year">2015 – 2020</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        function resetVideo() {
-            video.currentTime = 0;
-            video.pause();
-        }
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section reveal">
+        <div class="section-meta">
+            <span class="section-label">Experience</span>
+            <div class="section-head">
+                <h2>Work history</h2>
+                <div class="card-stack">
 
-        // Update video info
-        video.addEventListener('loadedmetadata', function() {
-            const duration = Math.floor(video.duration);
-            const minutes = Math.floor(duration / 60);
-            const seconds = duration % 60;
-            document.getElementById('duration').textContent = 
-                `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title">WiseTech Global</div>
+                            <div class="card-sub">Finance Graduate &nbsp;·&nbsp; Sydney HQ</div>
+                        </div>
+                        <div class="card-side">
+                            <div class="card-date">Feb 2025 – Present</div>
+                        </div>
+                        <button class="card-toggle" onclick="expandCard(this)">
+                            Show details <i class="chevron">↓</i>
+                        </button>
+                        <div class="card-detail">
+                            On WiseTech's rotational Graduate Program, I've gained direct exposure across FP&amp;A, Accounting, and Finance Transformations. My day has spanned from periodic P&amp;L analysis, quarterly forecasting, acquisitve integrations, reporting Group Headcount, and Usage reports to senior management. I've been directly involved in ERP implementation across Group-level and acquisitive businesses. 
+
+                            I enjoy software onboarding and financial integrations for acquisitions and hope to contribute to future financial projects by leveraging cutting edge technology. I also enjoy exploring agentic AI workflows and am part of an AI in Finance Program.
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title">Doma Group</div>
+                            <div class="card-sub">Banquets Crew</div>
+                        </div>
+                        <div class="card-side">
+                            <div class="card-date">Feb 2023 – Present</div>
+                        </div>
+                        <button class="card-toggle" onclick="expandCard(this)">
+                            Show details <i class="chevron">↓</i>
+                        </button>
+                        <div class="card-detail">
+                            Delivered professional service for weddings, corporate conferences, and government functions. Communicated with senior corporate clients and political figures; independently coordinated and managed small events.
+
+                            Thoroughly enjoyed the diverse experiences with industry and government, which leveraged my commitment for putting clients first. 
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title">RSM Australia Partners</div>
+                            <div class="card-sub">Restructuring &amp; Recovery Undergraduate</div>
+                        </div>
+                        <div class="card-side">
+                            <div class="card-date">Aug 2023 – Jan 2024</div>
+                        </div>
+                        <button class="card-toggle" onclick="expandCard(this)">
+                            Show details <i class="chevron">↓</i>
+                        </button>
+                        <div class="card-detail">
+                            Corporate restructuring and turnaround advisory. Prepared distribution statements, balance sheets, dividend payouts, and debtor schedules under legislative frameworks.
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title">Bunnings Warehouse</div>
+                            <div class="card-sub">Team Member</div>
+                        </div>
+                        <div class="card-side">
+                            <div class="card-date">Oct 2017 – Feb 2021</div>
+                        </div>
+                        <button class="card-toggle" onclick="expandCard(this)">
+                            Show details <i class="chevron">↓</i>
+                        </button>
+                        <div class="card-detail">
+                            20+ hours per week throughout high school for over 3.5 years. Responsibilities spanned customer service, phone liaison, logistics &amp; procurement, and resolving supply chain issues.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAREER ASPIRATIONS -->
+    <section id="career" class="section reveal">
+        <div class="section-meta">
+            <span class="section-label">Aspirations</span>
+            <div class="section-head">
+                <h2>Where I'm headed</h2>
+                <div class="aspirations-text">
+                    <p>To build my experience during the WiseTech Graduate Program by expanding my technichal and soft skills: 
+
+                    By applying my financial and accounting skills combined with a passion for economies and technology I will contribute meaningfully to a creative, forward-thinking organisation to improve existing systems and processes.
+
+                    And I wouldn't be where I am if it wasn't for the people around me... </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUTSIDE WORK -->
+    <section id="outside" class="section reveal">
+        <div class="section-meta">
+            <span class="section-label">Outside Work</span>
+            <div class="section-head">
+                <h2>In my free time</h2>
+                <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:20px;max-width:480px;line-height:1.65;">I love spending time outdoors or catching up with friends. This year I'm focused on maintaining my wellbeing and improving my physical health.</p>
+                <div class="hobby-list">
+                    <div class="hobby-item"><span class="hi"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-skateboarding"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 4a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" /><path d="M5.5 15h3.5l.75 -1.5" /><path d="M14 19v-5l-2.5 -3l2.5 -4" /><path d="M8 8l3 -1h4l1 3h3" /><path d="M17.5 21a.5 .5 0 1 0 0 -1a.5 .5 0 0 0 0 1" fill="currentColor" /><path d="M3 18c0 .552 .895 1 2 1h14c1.105 0 2 -.448 2 -1" /><path d="M6.5 21a.5 .5 0 1 0 0 -1a.5 .5 0 0 0 0 1" fill="currentColor" /></svg></span> Surfing — North Curly &amp; Queensie</div>
+                    <div class="hobby-item"><span class="hi"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cable-car-icon lucide-cable-car"><path d="M10 3h.01"/><path d="M14 2h.01"/><path d="m2 9 20-5"/><path d="M12 12V6.5"/><rect width="16" height="10" x="4" y="12" rx="3"/><path d="M9 12v5"/><path d="M15 12v5"/><path d="M4 17h16"/></svg></span> Skiing — Perisher</div>
+                    <div class="hobby-item"><span class="hi"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-leaf-icon lucide-leaf"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></span> Time in nature</div>
+                    <div class="hobby-item"><span class="hi"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-biceps-flexed-icon lucide-biceps-flexed"><path d="M12.409 13.017A5 5 0 0 1 22 15c0 3.866-4 7-9 7-4.077 0-8.153-.82-10.371-2.462-.426-.316-.631-.832-.62-1.362C2.118 12.723 2.627 2 10 2a3 3 0 0 1 3 3 2 2 0 0 1-2 2c-1.105 0-1.64-.444-2-1"/><path d="M15 14a5 5 0 0 0-7.584 2"/><path d="M9.964 6.825C8.019 7.977 9.5 13 8 15"/></svg></span> Physical health</div>
+                    <div class="hobby-item"><span class="hi"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-person-standing-icon lucide-person-standing"><circle cx="12" cy="5" r="1"/><path d="m9 20 3-6 3 6"/><path d="m6 8 6 2 6-2"/><path d="M12 10v4"/></svg></span> Socialising</div>
+                    <div class="hobby-item"><span class="hi"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-graduation-cap-icon lucide-graduation-cap"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg></span> Learning </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- USEFUL RESOURCES -->
+    <section id="resources" class="section reveal">
+        <div class="section-meta">
+            <span class="section-label">Resources</span>
+            <div class="section-head">
+                <h2>Useful resources</h2>
+                <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:24px;max-width:480px;line-height:1.65;">Links I return to regularly — spanning blockchain infrastructure, game theory, and financial education.</p>
+                <div class="resource-list">
+
+                    <a href="https://solana.com/" target="_blank" rel="noopener" class="resource-item">
+                        <div class="resource-name">Solana</div>
+                        <div class="resource-url">solana.com</div>
+                        <div class="resource-desc">High-performance blockchain built for global-scale decentralised applications and digital finance.</div>
+                    </a>
+
+                    <a href="https://gametheory101.com/" target="_blank" rel="noopener" class="resource-item">
+                        <div class="resource-name">Game Theory 101</div>
+                        <div class="resource-url">gametheory101.com</div>
+                        <div class="resource-desc">Accessible introductions to strategic decision-making, Nash equilibria, and applied game theory.</div>
+                    </a>
+
+                    <a href="https://www.youtube.com/@FinancialEducation" target="_blank" rel="noopener" class="resource-item">
+                        <div class="resource-name">Financial Education</div>
+                        <div class="resource-url">youtube.com/@FinancialEducation</div>
+                        <div class="resource-desc">Practical investing and finance content covering markets, stocks, and personal wealth building.</div>
+                    </a>
+
+                    <a href="https://chain.link/" target="_blank" rel="noopener" class="resource-item">
+                        <div class="resource-name">Chainlink</div>
+                        <div class="resource-url">chain.link</div>
+                        <div class="resource-desc">The decentralised oracle network enabling real-world asset tokenisation and smart contract connectivity.</div>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <span class="footer-name">Zac Douglas</span>
+        <span class="footer-copy">© 2025</span>
+    </div>
+</footer>
+
+<script>
+    // Dark mode
+    const modeBtn = document.getElementById('mode-toggle');
+    if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+    modeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    // Expand/collapse experience cards
+    function expandCard(btn) {
+        const detail = btn.nextElementSibling;
+        const isOpen = detail.classList.toggle('open');
+        btn.innerHTML = isOpen
+            ? 'Hide details <i class="chevron" style="display:inline-block;transform:rotate(180deg)">↓</i>'
+            : 'Show details <i class="chevron">↓</i>';
+    }
+
+    // Scroll reveal
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
         });
-
-        video.addEventListener('timeupdate', function() {
-            const current = Math.floor(video.currentTime);
-            const minutes = Math.floor(current / 60);
-            const seconds = current % 60;
-            document.getElementById('currentTime').textContent = 
-                `${minutes}:${seconds.toString().padStart(2, '0')}`;
-        });
-
-        video.addEventListener('volumechange', function() {
-            const volume = Math.round(video.volume * 100);
-            document.getElementById('volume').textContent = `${volume}%`;
-        });
+    }, { threshold: 0.07 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
