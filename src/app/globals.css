@@ -11,9 +11,9 @@
 
 :root {
   /* ─ Functional palette ─ */
-  --accent: #6366f1;         /* Indigo — brand accent */
-  --accent-hover: #818cf8;
-  --emerald: #10b981;        /* Positive / highlight */
+  --accent: #83A491;         /* Sage green — original brand */
+  --accent-hover: #5e7d6b;
+  --emerald: #10b981;
   --red: #f43f5e;
   --amber: #f59e0b;
   --sage: #83A491;
@@ -21,18 +21,18 @@
   --sage-light: #b5cfc4;
 
   /* ─ Surfaces ─ */
-  --bg:        #f8fafc;      /* slate-50 */
-  --bg-subtle: #f1f5f9;      /* slate-100 */
+  --bg:        #f6f4ef;      /* Original off-white */
+  --bg-subtle: #eaf1ed;
   --card-bg:   #ffffff;
   --sage-pale: #eaf1ed;
 
-  /* ─ Text (slate scale) ─ */
-  --text:       #0f172a;     /* slate-900 */
-  --text-muted: #475569;     /* slate-600 */
-  --text-faint: #94a3b8;     /* slate-400 */
+  /* ─ Text ─ */
+  --text:       #1c1c1a;
+  --text-muted: #6b6b65;
+  --text-faint: #a8a8a0;
 
   /* ─ Borders & dividers ─ */
-  --border:    #e2e8f0;      /* slate-200 */
+  --border:    #dddbd4;
 
   /* ─ Elevation ─ */
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
@@ -44,11 +44,14 @@
   --radius-lg: 12px;
 
   /* ─ Topbar glass ─ */
-  --topbar-bg: rgba(248,250,252,0.88);
+  --topbar-bg: rgba(246,244,239,0.92);
 }
 
 /* ─── DARK THEME ─── */
 .dark {
+  --accent: #6366f1;
+  --accent-hover: #818cf8;
+
   --bg:        #0a0a0a;
   --bg-subtle: #141414;
   --card-bg:   #161616;
