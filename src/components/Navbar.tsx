@@ -4,17 +4,28 @@ import React from 'react';
 import Link from 'next/link';
 import { portfolioData } from '@/data/portfolio';
 
+type Theme = 'light' | 'dark' | 'retro';
+
 export const Navbar = () => {
-  const [isDark, setIsDark] = React.useState(false);
+  const [theme, setTheme] = React.useState<Theme>('light');
 
   React.useEffect(() => {
-    const isDarkMode = document.documentElement.classList.contains('dark');
-    setIsDark(isDarkMode);
+    const saved = localStorage.getItem('theme') as Theme | null;
+    if (saved) {
+      setTheme(saved);
+      applyTheme(saved);
+    }
   }, []);
 
-  const toggleDarkMode = () => {
-    document.documentElement.classList.toggle('dark');
-    setIsDark(!isDark);
+  const applyTheme = (t: Theme) => {
+    document.documentElement.classList.remove('dark', 'retro');
+    if (t !== 'light') document.documentElement.classList.add(t);
+  };
+
+  const switchTheme = (t: Theme) => {
+    setTheme(t);
+    applyTheme(t);
+    localStorage.setItem('theme', t);
   };
 
   return (
@@ -23,7 +34,7 @@ export const Navbar = () => {
         <div className="topbar-logo">{portfolioData.name}</div>
         <nav>
           <ul className="topbar-nav">
-            {['About', 'Journey', 'Education', 'Experience'].map((item) => (
+            {['About', 'Journey', 'Education', 'Experience', 'Resources'].map((item) => (
               <li key={item}>
                 <Link href={`#${item.toLowerCase()}`}>{item}</Link>
               </li>
@@ -31,6 +42,17 @@ export const Navbar = () => {
           </ul>
         </nav>
         <div className="topbar-right">
+          <div className="theme-switcher">
+            {(['light', 'dark', 'retro'] as Theme[]).map((t) => (
+              <button
+                key={t}
+                className={theme === t ? 'active' : ''}
+                onClick={() => switchTheme(t)}
+              >
+                {t === 'light' ? '☀️' : t === 'dark' ? '🌙' : '🎮'}
+              </button>
+            ))}
+          </div>
           <a href={portfolioData.links.linkedin} target="_blank" rel="noopener noreferrer" className="topbar-btn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/>
@@ -45,9 +67,6 @@ export const Navbar = () => {
             </svg>
             <span>Resume</span>
           </a>
-          <button onClick={toggleDarkMode} className="topbar-btn" title="Toggle dark mode">
-            {isDark ? '☀️' : '🌓'}
-          </button>
         </div>
       </div>
     </header>
