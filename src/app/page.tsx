@@ -26,7 +26,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="mx-auto max-w-[1080px] px-9 pb-30">
+    <main className="pb-30">
       <Hero />
       <About />
       <Journey />

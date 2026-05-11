@@ -6,25 +6,40 @@ import { Section } from './Section';
 
 export const Education = () => {
   return (
-    <Section id="education" label="Education" title="Academic background">
-      <div className="border-t border-[var(--border)]">
+    <Section id="education" label="Academic" title="Education & credentials">
+      <div className="flex flex-col gap-12">
         {portfolioData.education.map((edu, i) => (
-          <div key={i} className="grid grid-cols-1 gap-1 border-b border-[var(--border)] py-5.5 sm:grid-cols-[1fr,auto]">
-            <div>
-              <div className="text-[0.88rem] font-semibold text-[var(--text)]">{edu.institution}</div>
-              <div className="mt-1 text-[0.8rem] leading-normal text-[var(--text-muted)]">{edu.degree}</div>
+          <div key={i} className="group relative grid grid-cols-1 gap-6 lg:grid-cols-[1fr,200px]">
+            <div className="order-2 lg:order-1">
+              <div className="mb-2 inline-flex rounded-full bg-[var(--sage-pale)] px-3 py-1 text-[0.7rem] font-bold uppercase tracking-wider text-[var(--sage)]">
+                {edu.period}
+              </div>
+              <h3 className="text-[1.5rem] font-semibold tracking-tight text-[var(--text)] transition-colors group-hover:text-[var(--sage)]">
+                {edu.institution}
+              </h3>
+              <p className="mt-2 text-[1.1rem] font-medium text-[var(--text-muted)]">
+                {edu.degree}
+              </p>
               {edu.details && (
-                <div className="mt-1 text-[0.8rem] leading-normal text-[var(--text-muted)] opacity-80">{edu.details}</div>
+                <p className="mt-2 text-[0.9rem] leading-relaxed text-[var(--text-faint)]">
+                  {edu.details}
+                </p>
+              )}
+              {edu.note && (
+                <div className="mt-6 flex gap-4 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] p-6 transition-all hover:border-[var(--sage)]">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[var(--sage-pale)] text-[1.2rem]">
+                    💡
+                  </div>
+                  <div>
+                    <div className="mb-1 text-[0.75rem] font-bold uppercase tracking-wide text-[var(--sage)]">Industry Project</div>
+                    <p className="text-[0.95rem] leading-[1.6] text-[var(--text-muted)]">{edu.note}</p>
+                  </div>
+                </div>
               )}
             </div>
-            <div className="text-left text-[0.76rem] whitespace-nowrap pt-1 text-[var(--text-faint)] sm:text-right">
-              {edu.period}
+            <div className="order-1 flex items-center justify-end lg:order-2">
+              {/* Optional: Add degree icons or university logos here if needed */}
             </div>
-            {edu.note && (
-              <div className="col-span-full mt-3 rounded bg-[var(--sage-pale)] border-l-2 border-[var(--sage-light)] px-3.5 py-2.5 text-[0.78rem] leading-[1.6] text-[var(--text-muted)]">
-                {edu.note}
-              </div>
-            )}
           </div>
         ))}
       </div>
