@@ -26,13 +26,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${dmSans.variable} ${dmSerifDisplay.variable}`}>
-      <body className="font-sans">
+      <body>
         <Navbar />
         {children}
-        <footer className="mt-20 border-t border-[var(--border)]">
-          <div className="mx-auto flex max-w-[1080px] items-center justify-between px-9 py-7">
-            <div className="font-serif text-[0.88rem] text-[var(--text-faint)]">Zac Douglas</div>
-            <div className="text-[0.74rem] text-[var(--text-faint)]">© {new Date().getFullYear()}</div>
+        <footer>
+          <div className="footer-inner">
+            <div className="footer-name">Zac Douglas</div>
+            <div className="footer-copy">© {new Date().getFullYear()}</div>
           </div>
         </footer>
       </body>
