@@ -38,7 +38,7 @@ export const portfolioData = {
       company: "WiseTech Global",
       role: "Finance Graduate · Sydney HQ",
       period: "Feb 2025 – Present",
-      details: "On WiseTech's rotational Graduate Program, I've gained direct exposure across FP&A, Accounting, and Finance Transformations. My day has spanned from periodic P&L analysis, quarterly forecasting, acquisitve integrations, reporting Group Headcount, and Usage reports to senior management. I've been directly involved in ERP implementation across Group-level and acquisitive businesses. I enjoy software onboarding and financial integrations for acquisitions and hope to contribute to future financial projects by leveraging cutting edge technology. I also enjoy exploring agentic AI workflows and am part of an AI in Finance Program."
+      details: "Undertaking WiseTech's rotational Graduate Program, I've gained direct exposure across FP&A, Accounting, and Finance Transformations. My day has spanned from periodic P&L analysis, quarterly forecasting, acquisitve and core ERP integrations, reporting Group Headcount, and Usage reports to senior management. I enjoy financial integrations as welll as understanding the business operations and revenue generating mechanisms. I hope to contribute to future financial projects by leveraging both cutting edge technology and the extensive network who supports me."
     },
     {
       company: "Doma Group",
